@@ -1,64 +1,69 @@
-'use client'
-import { useState } from "react";
-
-export default function LoginForm() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (username === "" || password === "") {
-      setError("Preencha todos os campos");
-      return;
-    }
-
-    // Aqui você pode adicionar sua lógica de autenticação
-    console.log("Logando com:", username, password);
-    setError("");
-  };
-
+import React from "react";
+import Image from "next/image";
+import condominio from '../assets/undraw_building_burz.svg'
+export default function LoginPage() {
   return (
-    <form
-      onSubmit={handleLogin}
-      className="bg-white p-8 rounded shadow-md w-full max-w-sm"
-    >
-      <h2 className="text-2xl font-semibold mb-6 text-center">Entrar</h2>
+    <div className="min-h-screen flex">
+      {/* Lado com imagem */}
+      <Image
+        src={condominio}
+        alt="Condomínio"
+        className="w-3/4 h-auto"
+        style={{ width: "50%", height: "auto" }}
+      />
 
-      <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-700">
-          Usuário
-        </label>
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          className="mt-1 w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300"
-        />
+      <div className="flex w-full lg:w-1/2 items-center justify-center p-8">
+        <div className="max-w-md w-full space-y-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-gray-800">Portal do Condomínio</h2>
+            <p className="mt-2 text-sm text-gray-500">Bem-vindo de volta. Faça login para continuar.</p>
+          </div>
+
+          <form className="mt-8 space-y-6">
+            <div className="rounded-md shadow-sm -space-y-px">
+              <div>
+                <label htmlFor="email" className="sr-only">E-mail</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  className="appearance-none rounded-t-md relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-400 focus:border-blue-400 focus:z-10 sm:text-sm"
+                  placeholder="Seu e-mail"
+                />
+              </div>
+              <div>
+                <label htmlFor="password" className="sr-only">Senha</label>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  required
+                  className="appearance-none rounded-b-md relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-400 focus:border-blue-400 focus:z-10 sm:text-sm"
+                  placeholder="Sua senha"
+                />
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between text-sm text-gray-500">
+              <a href="#" className="hover:underline">Esqueci minha senha</a>
+            </div>
+
+            <div>
+              <button
+                type="submit"
+                className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400"
+              >
+                Entrar
+              </button>
+            </div>
+          </form>
+
+          <div className="text-center text-sm text-gray-500">
+            <p>Não tem uma conta? <a href="#" className="text-blue-500 hover:underline">Solicitar acesso</a></p>
+          </div>
+        </div>
       </div>
-
-      <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-700">
-          Senha
-        </label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="mt-1 w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300"
-        />
-      </div>
-
-      {error && (
-        <p className="text-red-500 text-sm mb-4">{error}</p>
-      )}
-
-      <button
-        type="submit"
-        className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
-      >
-        Entrar
-      </button>
-    </form>
+    </div >
   );
 }
