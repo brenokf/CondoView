@@ -112,20 +112,22 @@ export default function UserTablePage() {
           </span>
           <div className="space-x-2">
             <Button
+              size="icon"
               onClick={() => setPage((p) => Math.max(1, p - 1))}
               disabled={page === 1}
               variant="outline"
-              className="rounded-xl"
+              className="rounded-xl text-slate-700 dark:text-slate-200"
             >
-              <ChevronLeft className="w-4 h-4" />
+              <ChevronLeft className="w-4 h-4  stroke-current" />
             </Button>
             <Button
               onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
               disabled={page === totalPages}
               variant="outline"
-              className="rounded-xl"
+              size="icon"
+              className="rounded-xl text-slate-700 dark:text-slate-200"
             >
-              <ChevronRight className="w-4 h-4" />
+              <ChevronRight className="w-4 h-4  stroke-current" />
             </Button>
           </div>
         </div>
